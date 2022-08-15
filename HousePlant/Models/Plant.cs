@@ -1,6 +1,6 @@
 namespace HousePlant.Models
 {
-  public class HousePlant
+  public class Plant
   {
     public int PlantId { get; set; }
     public string Name { get; set; }
