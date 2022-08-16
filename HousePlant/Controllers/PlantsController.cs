@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using HousePlant.Models;
-using System;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace HousePlant.Controllers
@@ -20,7 +21,7 @@ namespace HousePlant.Controllers
 
     //GET api/plants
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Animal>>> Get (string name, string commonName, string description, string type, string sunlight, string water, string humidity, int tempMin, int tempMax, string soil, string propagation)
+    public async Task<ActionResult<IEnumerable<Plant>>> Get (string name, string commonName, string description, string type, string sunlight, string water, string humidity, int tempMin, int tempMax, string soil, string propagation)
     {
       var query = _db.Plants.AsQueryable();
 
@@ -52,11 +53,11 @@ namespace HousePlant.Controllers
       {
         query = query.Where(entry => entry.Humidity == humidity);
       }
-        if (tempMin != null)
+        if (tempMin > 0)
       {
         query = query.Where(entry => entry.TempMin >= tempMin);
       }
-        if (tempMax != null)
+        if (tempMax > 0)
       {
         query = query.Where(entry => entry.TempMax <= tempMax);
       }
@@ -122,7 +123,7 @@ namespace HousePlant.Controllers
       _db.Plants.Add(plant);
       await _db.SaveChangesAsync();
 
-      return CreatedAtAction(nameOf(GetPlant), new {id = plant.PlantId }, plant);
+      return CreatedAtAction(nameof(GetPlant), new {id = plant.PlantId }, plant);
     }
 
     //Delete: api/Plants/5
@@ -143,7 +144,7 @@ namespace HousePlant.Controllers
 
     private bool PlantExists(int id)
     {
-      return _db.Plants.Any(e => e.PlantId == id)
+      return _db.Plants.Any(e => e.PlantId == id);
     }
   }
 }
