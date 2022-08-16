@@ -2,10 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using HousePlant.Models;
 using HousePlant.Services;
 
-namespace HousePlant.Controllers
+namespace HousePlant.Controllers.v1
 {
   [ApiController]
-  [Route("[controller]")]
+  [Route("Plants")]
+  [ApiVersion("1.0")]
   public class UsersController : ControllerBase
   {
     private IUserService _userService;
