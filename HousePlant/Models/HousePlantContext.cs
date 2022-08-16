@@ -26,7 +26,7 @@ namespace HousePlant.Models
             Propagation = "Offset",
             TempMin = 65,
             TempMax = 80
-          }
+          },
           new Plant 
           {
             PlantId = 2, 
@@ -41,7 +41,7 @@ namespace HousePlant.Models
             Propagation = "leaf cuttings",
             TempMin = 65,
             TempMax = 80
-          }
+          },
           new Plant 
           {
             PlantId = 3, 
