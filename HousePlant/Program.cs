@@ -21,6 +21,7 @@ namespace HousePlant
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    // .UseUrls("http://localhost:5000");
                 });
     }
 }
