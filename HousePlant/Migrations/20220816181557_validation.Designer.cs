@@ -2,14 +2,16 @@
 using HousePlant.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HousePlant.Migrations
 {
     [DbContext(typeof(HousePlantContext))]
-    partial class HousePlantContextModelSnapshot : ModelSnapshot
+    [Migration("20220816181557_validation")]
+    partial class validation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
