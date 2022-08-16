@@ -20,7 +20,7 @@ namespace HousePlant.Controllers
 
     //GET api/plants
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Animal>>> Get (string name, string commonName, string description, string type, string sunlight, string sater, string humidity, int tempMin, int tempMax, string soil, string propagation)
+    public async Task<ActionResult<IEnumerable<Animal>>> Get (string name, string commonName, string description, string type, string sunlight, string water, string humidity, int tempMin, int tempMax, string soil, string propagation)
     {
       var query = _db.Plants.AsQueryable();
 
@@ -54,11 +54,11 @@ namespace HousePlant.Controllers
       }
         if (tempMin != null)
       {
-        query = query.Where(entry => entry.TempMin == tempMin);
+        query = query.Where(entry => entry.TempMin >= tempMin);
       }
         if (tempMax != null)
       {
-        query = query.Where(entry => entry.TempMax == tempMax);
+        query = query.Where(entry => entry.TempMax <= tempMax);
       }
         if (soil != null)
       {
@@ -71,5 +71,79 @@ namespace HousePlant.Controllers
       return await query.ToListAsync();
     }
 
+    //Get: api/Plants/5
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Plant>> GetPlant(int id)
+    {
+      var plant = await _db.Plants.FindAsync(id);
+
+      if (plant == null)
+      {
+        return NotFound();
+      }
+      return plant;
+    }
+
+    //Put: api/Plant/5
+    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(int id, Plant plant)
+    {
+      if (id != plant.PlantId)
+      {
+        return BadRequest();
+      }
+
+      _db.Entry(plant).State = EntityState.Modified;
+
+      try
+      {
+        await _db.SaveChangesAsync();
+      }
+      catch (DbUpdateConcurrencyException)
+      {
+        if(!PlantExists(id))
+        {
+          return NotFound();
+        }
+        else
+        {
+          throw;
+        }
+      }
+      return NoContent();
+    }
+
+    //Post: api/Plants
+    [HttpPost]
+    public async Task<IActionResult> Post(Plant plant)
+    {
+      _db.Plants.Add(plant);
+      await _db.SaveChangesAsync();
+
+      return CreatedAtAction(nameOf(GetPlant), new {id = plant.PlantId }, plant);
+    }
+
+    //Delete: api/Plants/5
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeletePlant(int id)
+    {
+      var plant = await _db.Plants.FindAsync(id);
+      if (plant == null)
+      {
+        return NotFound();
+      }
+
+      _db.Plants.Remove(plant);
+      await _db.SaveChangesAsync();
+
+      return NoContent();
+    }
+
+    private bool PlantExists(int id)
+    {
+      return _db.Plants.Any(e => e.PlantId == id)
+    }
   }
 }
