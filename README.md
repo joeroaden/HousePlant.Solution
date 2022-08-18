@@ -86,10 +86,10 @@ In order to be authorized to use the POST, PUT, DELETE functionality of the API,
 
 Open Postman and create a POST request using the URL: `http://localhost:5000/api/users/authenticate`
 Add the following query to the request as raw data in the Body tab:
-{
-    "UserName": "test",
-    "Password": "test"
-}
+{\
+    "UserName": "test",\
+    "Password": "test"\
+}\
 The token will be generated in the response. Copy and paste it as the Token paramenter in the Authorization tab.
 
 ## Endpoints
