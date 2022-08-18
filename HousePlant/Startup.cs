@@ -16,6 +16,8 @@ using Microsoft.EntityFrameworkCore;
 using HousePlant.Helpers;
 using HousePlant.Services;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using System.IO;
+using System.Reflection;
 
 namespace HousePlant
 {
@@ -50,7 +52,29 @@ namespace HousePlant
                 opt.ApiVersionReader = ApiVersionReader.Combine(
                     new HeaderApiVersionReader("x-api-version"),
                     new MediaTypeApiVersionReader("x-api-version")
-                );
+                );                
+            });
+            //Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "HousePlant API",
+                    Description = "A simple example ASP.NET Core Web API",
+                    TermsOfService = new Uri("https://example.com/terms"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Mo Byrne, Joe Roaden, Zhibin Liang",
+                        Email = string.Empty,
+                        Url = new Uri("https://github.com/joeroaden/HousePlant.Solution"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Use under LICX",
+                        Url = new Uri("https://example.com/license"),
+                    }
+                });
             });
         }
 
@@ -63,6 +87,20 @@ namespace HousePlant
             }
 
             // app.UseHttpsRedirection();
+
+            //Enable middleware to serve generated Swagger as a Json endpoint
+            app.UseSwagger(c =>
+            {
+                c.SerializeAsV2 = true;
+            });
+
+            //Enable middle ware to serve swagger-ui (HTML, JS, CSS, etc.)
+            //specify the Swagger JSON endpoint.
+            app.UseSwaggerUI(c => 
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My House Plant API V1");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseRouting();
 
