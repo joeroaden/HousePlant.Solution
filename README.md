@@ -96,7 +96,7 @@ The token will be generated in the response. Copy and paste it as the Token para
 
 Base URL: https://localhost:5000
 
-* HTTP Request Structure
+## HTTP Request Structure
 * GET /api/plants
 * POST /api/plants
 * GET /api/plants/{id}
@@ -108,20 +108,20 @@ https://localhost:5000/api/plants/1
 
 ## Sample JSON Response
 
-{
-    "plantId": 1,
-    "name": "AGAVE PLANT",
-    "commonName": "AGAVE",
-    "description": "An agave plant comes in all different sizes and shapes; some are extremely  large and belong growing outside while the smaller varieties make perfect indoor potted houseplants. Agave plants are succulents with multi-layered rosettes of thick, fleshy, leaves. The short, thick stem is often hidden by the large, leathery leaves. If there are children and pets in the house, avoid purchasing agave plants that have sharp, pointed leaves with spiny margins. The sap in the agave leaves is very irritating and the spines and sharp points are painful if they puncture your skin. It takes many, many years for an agave plant to flower, especially when grown indoors. Some varieties may eventually produce a very tall stalk with clusters of flowers at the top. You may not want your agave plant to bloom since, strangely, they often die after flowering.",
-    "type": "Earth",
-    "sunlight": "bright light",
-    "water": "every 2-3 weeks",
-    "humidity": "drought resistance",
-    "soil": "succulent potting soil",
-    "propagation": "Offset",
-    "tempMin": 65,
-    "tempMax": 80
-}
+{\
+    "plantId": 1,\
+    "name": "AGAVE PLANT",\
+    "commonName": "AGAVE",\
+    "description": "An agave plant comes in all different sizes and shapes; some are extremely  large and belong growing outside while the smaller varieties make perfect indoor potted houseplants. Agave plants are succulents with multi-layered rosettes of thick, fleshy, leaves. The short, thick stem is often hidden by the large, leathery leaves. If there are children and pets in the house, avoid purchasing agave plants that have sharp, pointed leaves with spiny margins. The sap in the agave leaves is very irritating and the spines and sharp points are painful if they puncture your skin. It takes many, many years for an agave plant to flower, especially when grown indoors. Some varieties may eventually produce a very tall stalk with clusters of flowers at the top. You may not want your agave plant to bloom since, strangely, they often die after flowering.",\
+    "type": "Earth",\
+    "sunlight": "bright light",\
+    "water": "every 2-3 weeks",\
+    "humidity": "drought resistance",\
+    "soil": "succulent potting soil",\
+    "propagation": "Offset",\
+    "tempMin": 65,\
+    "tempMax": 80\
+}\
 
 ## Path Parameters
 | Parameter | Type | Default | Required | Description |
@@ -133,22 +133,22 @@ https://localhost:5000/api/plants/1
 http://localhost:5000/api/plants?commonName=agave
 
 ## Sample JSON Response
-[
-    {
-        "plantId": 1,
-        "name": "AGAVE PLANT",
-        "commonName": "AGAVE",
-        "description": "An agave plant comes in all different sizes and shapes; some are extremely  large and belong growing outside while the smaller varieties make perfect indoor potted houseplants. Agave plants are succulents with multi-layered rosettes of thick, fleshy, leaves. The short, thick stem is often hidden by the large, leathery leaves. If there are children and pets in the house, avoid purchasing agave plants that have sharp, pointed leaves with spiny margins. The sap in the agave leaves is very irritating and the spines and sharp points are painful if they puncture your skin. It takes many, many years for an agave plant to flower, especially when grown indoors. Some varieties may eventually produce a very tall stalk with clusters of flowers at the top. You may not want your agave plant to bloom since, strangely, they often die after flowering.",
-        "type": "Earth",
-        "sunlight": "bright light",
-        "water": "every 2-3 weeks",
-        "humidity": "drought resistance",
-        "soil": "succulent potting soil",
-        "propagation": "Offset",
-        "tempMin": 65,
-        "tempMax": 80
-    }
-]
+[\
+    {\
+        "plantId": 1,\
+        "name": "AGAVE PLANT",\
+        "commonName": "AGAVE",\
+        "description": "An agave plant comes in all different sizes and shapes; some are extremely  large and belong growing outside while the smaller varieties make perfect indoor potted houseplants. Agave plants are succulents with multi-layered rosettes of thick, fleshy, leaves. The short, thick stem is often hidden by the large, leathery leaves. If there are children and pets in the house, avoid purchasing agave plants that have sharp, pointed leaves with spiny margins. The sap in the agave leaves is very irritating and the spines and sharp points are painful if they puncture your skin. It takes many, many years for an agave plant to flower, especially when grown indoors. Some varieties may eventually produce a very tall stalk with clusters of flowers at the top. You may not want your agave plant to bloom since, strangely, they often die after flowering.",\
+        "type": "Earth",\
+        "sunlight": "bright light",\
+        "water": "every 2-3 weeks",\
+        "humidity": "drought resistance",\
+        "soil": "succulent potting soil",\
+        "propagation": "Offset",\
+        "tempMin": 65,\
+        "tempMax": 80\
+    }\
+]\
 
 
 This program was built using *`Microsoft .NET SDK 5.0.401`*, and may not be compatible with other versions. Your milage may vary.
