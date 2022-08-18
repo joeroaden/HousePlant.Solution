@@ -106,7 +106,7 @@ DELETE /api/plants/{id}
 Example Query
 https://localhost:5000/api/plants/1
 
-## Sample JSON Response
+##Sample JSON Response
 
 {
     "plantId": 1,
@@ -132,7 +132,7 @@ https://localhost:5000/api/plants/1
 ## Example Query
 http://localhost:5000/api/plants?commonName=agave
 
-Sample JSON Repsonse
+## Sample JSON Response
 [
     {
         "plantId": 1,
