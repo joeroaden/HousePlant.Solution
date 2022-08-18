@@ -5,12 +5,14 @@ using Microsoft.AspNetCore.Http;
 using HousePlant.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Microsoft.AspNetCore.Cors;
 
 namespace HousePlant.Controllers.v1
 {
   [ApiController]
   [Route("api/Plants")]
   [ApiVersion("1.0")]
+  [EnableCors]
   public class PlantsController : ControllerBase
   {
     private readonly HousePlantContext _db;

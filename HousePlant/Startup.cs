@@ -23,6 +23,8 @@ namespace HousePlant
 {
     public class Startup
     {
+        // readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -33,7 +35,18 @@ namespace HousePlant
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("https://localhost:5001", "http://localhost:5000")
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod()
+                                            .SetIsOriginAllowedToAllowWildcardSubdomains();
+                    });
+            });
+
             services.AddDbContext<HousePlantContext>(opt =>
                 opt.UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
             services.AddControllers();
@@ -104,13 +117,17 @@ namespace HousePlant
 
             app.UseRouting();
 
+            // app.UseCors();
+            
             app.UseAuthorization();
 
             //  global cors policy
-            // app.UseCors(x => x
-            //     .AllowAnyOrigin()
-            //     .AllowAnyMethod()
-            //     .AllowAnyHeader());
+            app.UseCors(x => 
+            {   x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });
 
             // custom jwt auth middleware
             app.UseMiddleware<JwtMiddleware>();
