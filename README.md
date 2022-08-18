@@ -96,12 +96,12 @@ The token will be generated in the response. Copy and paste it as the Token para
 
 Base URL: https://localhost:5000
 
-HTTP Request Structure
-GET /api/plants
-POST /api/plants
-GET /api/plants/{id}
-PUT /api/plants/{id}
-DELETE /api/plants/{id}
+* HTTP Request Structure
+* GET /api/plants
+* POST /api/plants
+* GET /api/plants/{id}
+* PUT /api/plants/{id}
+* DELETE /api/plants/{id}
 
 Example Query
 https://localhost:5000/api/plants/1
