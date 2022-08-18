@@ -1,5 +1,13 @@
-  
-  
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using HousePlant.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+
+  namespace HousePlant.Controllers.v2
+  {
   [ApiVersion("2.0")]
   [Route("api/Plants")]
   [ApiController]
@@ -139,4 +147,5 @@
     {
       return _db.Plants.Any(e => e.PlantId == id);
     }
+  }
   }

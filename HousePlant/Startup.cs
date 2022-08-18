@@ -15,6 +15,7 @@ using HousePlant.Models;
 using Microsoft.EntityFrameworkCore;
 using HousePlant.Helpers;
 using HousePlant.Services;
+using Microsoft.AspNetCore.Mvc.Versioning;
 
 namespace HousePlant
 {
@@ -36,11 +37,20 @@ namespace HousePlant
             services.AddControllers();
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddScoped<IUserService, UserService>();
+            
+            // Updating the middlewear to use versioning.
+            services.AddApiVersioning(opt => {
+                // this is going to return all available api versions
+                opt.ReportApiVersions = true;
 
-            services.AddApiVersioning(o => {
-                o.ReportApiVersions = true;
-                o.AssumeDefaultVersionWhenUnspecified = true;
-                o.DefaultApiVersion = new ApiVersion(1, 0);
+                opt.AssumeDefaultVersionWhenUnspecified = true;
+                opt.DefaultApiVersion = new ApiVersion(1, 0);
+
+                // Add Media type versioning
+                opt.ApiVersionReader = ApiVersionReader.Combine(
+                    new HeaderApiVersionReader("x-api-version"),
+                    new MediaTypeApiVersionReader("x-api-version")
+                );
             });
         }
 
